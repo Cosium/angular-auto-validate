@@ -1,5 +1,5 @@
 /*
- * angular-auto-validate - v1.18.16 - 2015-09-21
+ * cos-angular-auto-validate - v1.18.170 - 2015-11-10
  * https://github.com/jonsamwell/angular-auto-validate
  * Copyright (c) 2015 Jon Samwell (http://www.jonsamwell.com)
  */
@@ -12,6 +12,7 @@ function ValidatorFn() {
   var elementStateModifiers = {},
     enableValidElementStyling = true,
     enableInvalidElementStyling = true,
+    enableFirstInvalidElementScrollingOnSubmit = false,
     validationEnabled = true,
 
     toBoolean = function (value) {
@@ -241,6 +242,25 @@ function ValidatorFn() {
   this.setInvalidElementStyling = function (enabled) {
     enableInvalidElementStyling = enabled;
   };
+
+  /**
+   * @ngdoc function
+   * @name validator#setFirstInvalidElementScrollingOnSubmit
+   * @methodOf validator
+   *
+   * @description
+   * Globally enables first invalid element scrolling on form submit. This is disabled by default.
+   *
+   * @param enabled {Boolean} enabled True to enable scrolling otherwise false.
+   */
+  this.setFirstInvalidElementScrollingOnSubmit = function (enabled) {
+    enableFirstInvalidElementScrollingOnSubmit = enabled;
+  };
+
+  this.firstInvalidElementScrollingOnSubmitEnabled = function () {
+    return enableFirstInvalidElementScrollingOnSubmit;
+  };
+
 
   this.getDomModifier = function (el) {
     var modifierKey = (el !== undefined ? el.attr('element-modifier') : this.defaultElementModifier) ||
@@ -818,7 +838,7 @@ function ElementUtilsFn() {
   };
 }
 
-function ValidationManagerFn(validator, elementUtils) {
+function ValidationManagerFn(validator, elementUtils, $anchorScroll) {
   var elementTypesToValidate = ['input', 'textarea', 'select', 'form'],
 
     elementIsVisible = function (el) {
@@ -972,6 +992,12 @@ function ValidationManagerFn(validator, elementUtils) {
               ctrlFormOptions.forceValidation = force;
               try {
                 isValid = validateElement(controller, ctrlElement, ctrlFormOptions);
+                if (validator.firstInvalidElementScrollingOnSubmitEnabled() && !isValid && frmValid) {
+                  var ctrlElementId = ctrlElement.attr('id');
+                  if (ctrlElementId) {
+                    $anchorScroll(ctrlElementId);
+                  }
+                }
                 frmValid = frmValid && isValid;
               } finally {
                 ctrlFormOptions.forceValidation = originalForceValue;
@@ -1033,7 +1059,8 @@ function ValidationManagerFn(validator, elementUtils) {
 
 ValidationManagerFn.$inject = [
   'validator',
-  'jcs-elementUtils'
+  'jcs-elementUtils',
+  '$anchorScroll'
 ];
 
 angular.module('jcs-autoValidate').factory('jcs-elementUtils', ElementUtilsFn);
