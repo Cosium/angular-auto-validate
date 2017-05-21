@@ -1,8 +1,11 @@
 {
-  "name": "angular-auto-validate",
-  "version": "1.18.17",
+  "name": "@cosium/angular-auto-validate",
+  "version": "1.18.170",
   "description": "An automatic validation module for AngularJS which gets rid of excess html in favour of dynamic element modification to notify the user of validation errors",
   "main": "angular-auto-validate.min.js",
+  "publishConfig": {
+    "registry": "http://srv-203.cosium.com:4873"
+  },
   "scripts": {
     "test": "default"
   },
