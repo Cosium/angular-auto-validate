@@ -1,6 +1,9 @@
 {
-  "name": "angular-auto-validate",
-  "version": "1.19.6",
+  "name": "@cosium-fork/angular-auto-validate",
+  "version": "1.19.60",
+  "publishConfig": {
+    "registry": "https://nexus.cosium.dev/repository/npm-releases/"
+  },
   "description": "An automatic validation module for AngularJS which gets rid of excess html in favour of dynamic element modification to notify the user of validation errors",
   "main": "dist/jcs-auto-validate.min.js",
   "scripts": {
