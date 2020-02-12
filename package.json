@@ -1,6 +1,6 @@
 {
   "name": "@cosium-fork/angular-auto-validate",
-  "version": "1.19.61",
+  "version": "1.19.62",
   "publishConfig": {
     "registry": "https://nexus.cosium.dev/repository/npm-releases/"
   },
