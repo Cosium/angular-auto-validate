@@ -8,7 +8,7 @@
   "main": "dist/jcs-auto-validate.min.js",
   "scripts": {
     "test": "default",
-    "build": "npm install && grunt --force"
+    "build": "npm install && npx grunt --force"
   },
   "repository": {
     "type": "git",
