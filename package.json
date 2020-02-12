@@ -7,7 +7,8 @@
   "description": "An automatic validation module for AngularJS which gets rid of excess html in favour of dynamic element modification to notify the user of validation errors",
   "main": "dist/jcs-auto-validate.min.js",
   "scripts": {
-    "test": "default"
+    "test": "default",
+    "build": "npm install && grunt --force"
   },
   "repository": {
     "type": "git",
@@ -37,9 +38,9 @@
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "^0.4.0",
     "grunt-jsbeautifier": "^0.2.7",
-    "grunt-karma": "^0.8.3",
+    "grunt-karma": "^0.12.2",
     "grunt-plato": "^1.0.0",
-    "karma": "^0.12.16",
+    "karma": "^1.6.0",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.4",
     "karma-coverage": "^0.2.4",
@@ -52,10 +53,10 @@
     "sinon": "^1.10.2"
   },
   "ignore": [
-      "**/.*",
-      "node_modules",
-      "bower_components",
-      "tests",
-      "reports"
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tests",
+    "reports"
   ]
 }
